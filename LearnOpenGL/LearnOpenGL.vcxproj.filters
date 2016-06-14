@@ -32,7 +32,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Model\main.cpp">
+    <ClCompile Include="Blending\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
