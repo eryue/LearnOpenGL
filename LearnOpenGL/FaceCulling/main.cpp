@@ -79,55 +79,54 @@ int main()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-
 	// Setup and compile our shaders
 	Shader shader("../LearnOpenGL/Blending/shader.vs", "../LearnOpenGL/Blending/shader.frag");
 
 #pragma region "object_initialization"
 	// Set the object data (buffers, vertex attributes)
 	GLfloat cubeVertices[] = {
-		// Positions          // Texture Coords
-		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
-		0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
-		0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-		0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
-
-		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-		0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-		0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
-		0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
-		-0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
-		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-
-		-0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-		-0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-
-		0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-		0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-		0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-		0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-		0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-		0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-
-		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-		0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
-		0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-		0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-
-		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-		0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-		0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-		0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-		-0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
-		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f
+		// Back face
+		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, // Bottom-left
+		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, // top-right
+		0.5f, -0.5f, -0.5f, 1.0f, 0.0f, // bottom-right         
+		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, // top-right
+		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, // bottom-left
+		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, // top-left
+		// Front face
+		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, // bottom-left
+		0.5f, -0.5f, 0.5f, 1.0f, 0.0f, // bottom-right
+		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, // top-right
+		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, // top-right
+		-0.5f, 0.5f, 0.5f, 0.0f, 1.0f, // top-left
+		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, // bottom-left
+		// Left face
+		-0.5f, 0.5f, 0.5f, 1.0f, 0.0f, // top-right
+		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, // top-left
+		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // bottom-left
+		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // bottom-left
+		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, // bottom-right
+		-0.5f, 0.5f, 0.5f, 1.0f, 0.0f, // top-right
+		// Right face
+		0.5f, 0.5f, 0.5f, 1.0f, 0.0f, // top-left
+		0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // bottom-right
+		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, // top-right         
+		0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // bottom-right
+		0.5f, 0.5f, 0.5f, 1.0f, 0.0f, // top-left
+		0.5f, -0.5f, 0.5f, 0.0f, 0.0f, // bottom-left     
+		// Bottom face
+		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // top-right
+		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, // top-left
+		0.5f, -0.5f, 0.5f, 1.0f, 0.0f, // bottom-left
+		0.5f, -0.5f, 0.5f, 1.0f, 0.0f, // bottom-left
+		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, // bottom-right
+		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // top-right
+		// Top face
+		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, // top-left
+		0.5f, 0.5f, 0.5f, 1.0f, 0.0f, // bottom-right
+		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, // top-right     
+		0.5f, 0.5f, 0.5f, 1.0f, 0.0f, // bottom-right
+		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, // top-left
+		-0.5f, 0.5f, 0.5f, 0.0f, 0.0f  // bottom-left        
 	};
 	GLfloat planeVertices[] = {
 		// Positions          // Texture Coords (note we set these higher than 1 that together with GL_REPEAT as texture wrapping mode will cause the floor texture to repeat)
@@ -231,6 +230,9 @@ int main()
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 		// Cubes
+		glEnable(GL_CULL_FACE);
+		//glCullFace(GL_BACK);
+		//glFrontFace(GL_CW);
 		glBindVertexArray(cubeVAO);
 		glBindTexture(GL_TEXTURE_2D, cubeTexture);  // We omit the glActiveTexture part since TEXTURE0 is already the default active texture unit. (a single sampler used in fragment is set to 0 as well by default)		
 		model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
@@ -240,6 +242,7 @@ int main()
 		model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+		glDisable(GL_CULL_FACE);
 		// Floor
 		glBindVertexArray(planeVAO);
 		glBindTexture(GL_TEXTURE_2D, floorTexture);
