@@ -37,6 +37,8 @@ public:
 			this->meshes[i].Draw(shader);
 	}
 
+	vector<Mesh> getMeshes(){ return meshes; }
+	vector<Texture> getTextures() { return textures_loaded; }
 private:
 	/*  Model Data  */
 	vector<Mesh> meshes;

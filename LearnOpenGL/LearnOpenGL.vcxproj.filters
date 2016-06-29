@@ -32,7 +32,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Geometryexplode\main.cpp">
+    <ClCompile Include="Instancing\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

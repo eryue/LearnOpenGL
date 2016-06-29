@@ -86,6 +86,8 @@ public:
 		}
 	}
 
+	GLuint getVao(){ return VAO; }
+
 private:
 	/*  Render data  */
 	GLuint VAO, VBO, EBO;
