@@ -13,7 +13,7 @@ class Shader
 public:
 	GLuint Program;
 	// Constructor generates the shader on the fly
-	Shader(const GLchar* vertexPath, const GLchar* fragmentPath)
+	Shader(const GLchar* vertexPath, const GLchar* fragmentPath, const GLchar* geometryPath = nullptr)
 	{
 		// 1. Retrieve the vertex/fragment source code from filePath
 		std::string vertexCode;
@@ -23,6 +23,10 @@ public:
 		// ensures ifstream objects can throw exceptions:
 		vShaderFile.exceptions(std::ifstream::badbit);
 		fShaderFile.exceptions(std::ifstream::badbit);
+
+		std::string geometryCode;
+		std::ifstream gShaderFile;
+		gShaderFile.exceptions(std::ifstream::badbit);
 		try
 		{
 			// Open files
@@ -38,6 +42,15 @@ public:
 			// Convert stream into string
 			vertexCode = vShaderStream.str();
 			fragmentCode = fShaderStream.str();
+
+			if (geometryPath)
+			{
+				gShaderFile.open(geometryPath);
+				std::stringstream gShaderStream;
+				gShaderStream << gShaderFile.rdbuf();
+				gShaderFile.close();
+				geometryCode = gShaderStream.str();
+			}
 		}
 		catch (std::ifstream::failure e)
 		{
@@ -75,6 +88,25 @@ public:
 		this->Program = glCreateProgram();
 		glAttachShader(this->Program, vertex);
 		glAttachShader(this->Program, fragment);
+
+		// 
+		GLuint geometry;
+		if (geometryPath)
+		{
+			const GLchar* gShaderCode = geometryCode.c_str();
+			geometry = glCreateShader(GL_GEOMETRY_SHADER);
+			glShaderSource(geometry, 1, &gShaderCode, NULL);
+			glCompileShader(geometry);
+			// Print compile errors if any
+			glGetShaderiv(geometry, GL_COMPILE_STATUS, &success);
+			if (!success)
+			{
+				glGetShaderInfoLog(geometry, 512, NULL, infoLog);
+				std::cout << "ERROR::SHADER::GEOMETRY::COMPILATION_FAILED\n" << infoLog << std::endl;
+			}
+			glAttachShader(this->Program, geometry);
+		}
+
 		glLinkProgram(this->Program);
 		// Print linking errors if any
 		glGetProgramiv(this->Program, GL_LINK_STATUS, &success);
@@ -85,6 +117,7 @@ public:
 		}
 		// Delete the shaders as they're linked into our program now and no longer necessery
 		glDeleteShader(vertex);
+		glDeleteShader(fragment);
 		glDeleteShader(fragment);
 
 	}

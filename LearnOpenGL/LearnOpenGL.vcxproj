@@ -17,7 +17,7 @@
     <ClInclude Include="common\Shader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Uniformbuffer\main.cpp" />
+    <ClCompile Include="Geometryexplode\main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5505A72F-554F-453B-A949-9C95155305CC}</ProjectGuid>

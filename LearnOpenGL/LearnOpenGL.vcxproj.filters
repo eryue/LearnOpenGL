@@ -32,7 +32,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Uniformbuffer\main.cpp">
+    <ClCompile Include="Geometryexplode\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

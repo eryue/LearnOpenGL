@@ -75,7 +75,7 @@ int main()
 	Shader lampShader("../LearnOpenGL/Model/lamp.vs", "../LearnOpenGL/Model/lamp.frag");
 
 	// Load models
-	Model ourModel("../LearnOpenGL/Model/Nanosuit/nanosuit.obj");
+	Model ourModel("../resources/Nanosuit/nanosuit.obj");
 	// Used a lamp object here. Find one yourself on the internet, or create your own one ;) (or be oldschool and set the VBO and VAO yourselves)
 	//Model lightBulb("../../../Path/To/Lamps/Bulb.obj");
 
