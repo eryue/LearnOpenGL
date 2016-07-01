@@ -32,7 +32,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Instancing\main.cpp">
+    <ClCompile Include="Blinnphong\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
