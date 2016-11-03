@@ -3,7 +3,7 @@ learn opengl.
 
 http://learnopengl.com/
 
-http://learnopengl-cn.readthedocs.io/zh/latest/
+https://learnopengl-cn.github.io/
 
 http://bullteacher.com/category/zh_learnopengl_com
 
